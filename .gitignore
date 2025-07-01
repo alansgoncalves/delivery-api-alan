@@ -1,33 +1,75 @@
-HELP.md
+### Arquivos gerados pelo Maven ###
 target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+*.class
+*.log
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
 
-### STS ###
-.apt_generated
+### Arquivos de IDE ###
+# Eclipse
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+.settings/
+bin/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IntelliJ
+.idea/
 *.iml
 *.ipr
+*.iws
+out/
 
-### NetBeans ###
+# VS Code
+.vscode/
+
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Spring Boot ###
+.springBeans
+.sts4-cache/
+
+### Banco de dados e logs ###
+*.db
+*.sql
+*.h2.db
+*.log
+logs/
+
+### Ambiente ###
+.env
+.DS_Store
+*.swp
+*.swo
+
+### System ###
+HELP.md
+dependency-reduced-pom.xml
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+### Test Coverage ###
+*.jacoco
+coverage/
+
+### Frontend (se tiver) ###
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

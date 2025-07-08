@@ -2,6 +2,7 @@ package com.deliverytech.delivery.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 // import com.deliverytech.enums.StatusPedido;
 import jakarta.persistence.*;

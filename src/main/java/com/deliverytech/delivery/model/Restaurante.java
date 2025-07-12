@@ -18,6 +18,7 @@ public class Restaurante {
     private String telefone;
     private BigDecimal taxaEntrega;
     private boolean ativo;
+    private Integer tempoEntregaMinutos;
 
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos;

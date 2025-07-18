@@ -1,12 +1,56 @@
 package com.deliverytech.delivery.service;
+
+import com.deliverytech.delivery.dto.request.RestauranteRequest;
 import com.deliverytech.delivery.model.Restaurante;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 public interface RestauranteService {
-    Restaurante cadastrar(Restaurante restaurante);
+
+    /**
+     * Cadastrar novo restaurante
+     */
+    Restaurante cadastrar(RestauranteRequest restauranteRequest);
+
+    /**
+     * Buscar restaurante por ID
+     */
     Optional<Restaurante> buscarPorId(Long id);
+
+    /**
+     * Listar todos os restaurantes
+     */
     List<Restaurante> listarTodos();
+
+    /**
+     * Listar apenas restaurantes ativos
+     */
+    List<Restaurante> listarAtivos();
+
+    /**
+     * Buscar restaurantes por categoria
+     */
     List<Restaurante> buscarPorCategoria(String categoria);
-    Restaurante atualizar(Long id, Restaurante restauranteAtualizado);
+
+    /**
+     * Buscar restaurantes por avaliação mínima
+     */
+    List<Restaurante> buscarPorAvaliacao(BigDecimal minAvaliacao);
+
+    /**
+     * Buscar restaurantes por taxa de entrega máxima
+     */
+    List<Restaurante> buscarPorTaxaEntrega(BigDecimal maxTaxa);
+
+    /**
+     * Atualizar dados do restaurante
+     */
+    Restaurante atualizar(Long id, RestauranteRequest restauranteRequest);
+
+    /**
+     * Inativar restaurante (soft delete)
+     */
+    void inativar(Long id);
 }

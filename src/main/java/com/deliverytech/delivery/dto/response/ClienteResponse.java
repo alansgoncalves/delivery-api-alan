@@ -1,5 +1,13 @@
 package com.deliverytech.delivery.dto.response;
 
-public class ClienteResponse {
+import lombok.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ClienteResponse {
+  private Long id;
+  private String nome;
+  private String email;
+  private Boolean ativo;
 }

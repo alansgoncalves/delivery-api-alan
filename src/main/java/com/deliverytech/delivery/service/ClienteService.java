@@ -3,8 +3,6 @@ package com.deliverytech.delivery.service;
 import com.deliverytech.delivery.dto.request.ClienteRequest;
 import com.deliverytech.delivery.model.Cliente;
 
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,40 +12,40 @@ import java.util.Optional;
  */
 public interface ClienteService {
 
-    /**
-     * Cadastrar novo cliente com validações completas
-     */
-    Cliente cadastrar(Cliente cliente);
+  /**
+   * Cadastrar novo cliente com validações completas
+   */
+  Cliente cadastrar(Cliente cliente);
 
-    /**
-     * Buscar cliente por ID
-     */
-    Optional<Cliente> buscarPorId(Long id);
+  /**
+   * Buscar cliente por ID
+   */
+  Optional<Cliente> buscarPorId(Long id);
 
-    /**
-     * Buscar cliente por email
-     */
-    Optional<Cliente> buscarPorEmail(String email);
+  /**
+   * Buscar cliente por email
+   */
+  Optional<Cliente> buscarPorEmail(String email);
 
-    /**
-     * Listar todos os clientes ativos
-     */
-    List<Cliente> listarAtivos();
+  /**
+   * Listar todos os clientes ativos
+   */
+  List<Cliente> listarAtivos();
 
-    /**
-     * Buscar clientes por nome (contendo)
-     */
-    List<Cliente> buscarPorNome(String nome);
+  /**
+   * Buscar clientes por nome (contendo)
+   */
+  List<Cliente> buscarPorNome(String nome);
 
-    /**
-     * Atualizar dados do cliente
-     */
-    Cliente atualizar(Long id, Cliente clienteAtualizado);
+  /**
+   * Atualizar dados do cliente
+   */
+  Cliente atualizar(Long id, Cliente clienteAtualizado);
 
-    /**
-     * Inativar cliente (soft delete)
-     */
-    void inativar(Long id);
+  /**
+   * Inativar cliente (soft delete)
+   */
+  void inativar(Long id);
 
-    Cliente cadastrar(ClienteRequest clienteRequest);
+  Cliente cadastrar(ClienteRequest clienteRequest);
 }

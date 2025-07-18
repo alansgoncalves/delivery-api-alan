@@ -1,25 +1,54 @@
 package com.deliverytech.delivery.model; // Define o pacote onde essa classe está localizada no projeto
 
-import jakarta.persistence.*;         // Anotações JPA para mapeamento da entidade
-import lombok.Data;                  // Lombok para geração automática de métodos
-import java.math.BigDecimal;         // Tipo usado para valores monetários com precisão
+import jakarta.persistence.*;
+import lombok.*;
+import java.math.BigDecimal;
 
-@Entity // Indica que esta classe será mapeada como uma tabela no banco de dados
-@Data   // Gera automaticamente os métodos getters, setters, toString, equals e hashCode
+@Entity
+@Table(name = "item_pedido")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ItemPedido {
-    @Id // Define que este campo será a chave primária da tabela
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Estratégia de auto incremento do ID no banco
-    private Long id;
 
-    private int quantidade;           // Quantidade do produto nesse item do pedido
-    private BigDecimal precoUnitario; // Preço de cada unidade do produto
-    private BigDecimal subtotal;      // Resultado de precoUnitario * quantidade
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne // Muitos itens podem estar ligados a um único pedido
-    @JoinColumn(name = "pedido_id") // Nome da coluna de chave estrangeira no banco
-    private Pedido pedido; // Pedido ao qual este item pertence
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pedido_id", nullable = false)
+  private Pedido pedido;
 
-    @ManyToOne // Muitos itens podem conter o mesmo produto
-    @JoinColumn(name = "produto_id") // Nome da coluna de chave estrangeira no banco
-    private Produto produto; // Produto relacionado a este item
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "produto_id", nullable = false)
+  private Produto produto;
+
+  @Column(nullable = false)
+  private Integer quantidade;
+
+  @Column(name = "preco_unitario", nullable = false, precision = 10, scale = 2)
+  private BigDecimal precoUnitario;
+
+  @Column(nullable = false, precision = 10, scale = 2)
+  private BigDecimal subtotal;
+
+  // ✅ MÉTODO PARA CALCULAR SUBTOTAL AUTOMATICAMENTE
+  @PrePersist
+  @PreUpdate
+  private void calcularSubtotal() {
+    if (precoUnitario != null && quantidade != null) {
+      this.subtotal = precoUnitario.multiply(BigDecimal.valueOf(quantidade));
+    }
+  }
+
+  // ✅ MÉTODO AUXILIAR PARA DEFINIR SUBTOTAL MANUALMENTE SE NECESSÁRIO
+  public void setSubtotal() {
+    calcularSubtotal();
+  }
+
+  // ✅ MÉTODO AUXILIAR PARA OBTER VALOR TOTAL DO ITEM
+  public BigDecimal getValorTotal() {
+    return subtotal != null ? subtotal : BigDecimal.ZERO;
+  }
 }

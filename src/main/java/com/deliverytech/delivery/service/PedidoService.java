@@ -27,7 +27,7 @@ public interface PedidoService {
 
     Pedido confirmar(Long id);
 
-    void cancelar(Long id);
+    Pedido cancelar(Long pedidodId);
 
     // === GESTÃO DE ITENS ===
     Pedido adicionarItem(Long pedidoId, Long produtoId, Integer quantidade);
@@ -37,5 +37,12 @@ public interface PedidoService {
 
     // === RELATÓRIOS ===
     List<Pedido> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim);
+
+    // === BUSCAS COM ITENS ===
+    Optional<Pedido> buscarPorIdComItens(Long id);
+
+    List<Pedido> buscarPorClienteComItens(Long clienteId);
+
+    List<Pedido> listarTodos();
 
 }

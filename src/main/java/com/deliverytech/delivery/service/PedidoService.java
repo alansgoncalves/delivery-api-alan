@@ -1,6 +1,8 @@
 package com.deliverytech.delivery.service;
 
 import com.deliverytech.delivery.dto.request.ItemPedidoRequest;
+import java.time.LocalDate;
+
 import com.deliverytech.delivery.model.Pedido;
 import com.deliverytech.delivery.model.StatusPedido;
 
@@ -28,7 +30,7 @@ public interface PedidoService {
 
     Pedido confirmar(Long id);
 
-    Pedido cancelar(Long pedidodId);
+    Pedido cancelar(Long pedidoId); // MUDAR para retornar Pedido
 
     // === GESTÃO DE ITENS ===
     Pedido adicionarItem(Long pedidoId, Long produtoId, Integer quantidade);
@@ -45,6 +47,11 @@ public interface PedidoService {
      */
     BigDecimal calcularTotalPedido(List<ItemPedidoRequest> itens);
 
+    /**
+     * Listar pedidos com filtros opcionais
+     */
+    List<Pedido> listarComFiltros(StatusPedido status, LocalDate dataInicio, LocalDate dataFim);
+
     // === RELATÓRIOS ===
     List<Pedido> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim);
 
@@ -55,4 +62,5 @@ public interface PedidoService {
 
     List<Pedido> listarTodos();
 
+    void deletar(Long id);
 }

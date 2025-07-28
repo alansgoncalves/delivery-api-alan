@@ -27,6 +27,8 @@ public interface ProdutoService {
 
     List<Produto> listarDisponiveis();
 
+    List<Produto> buscarPorNome(String nome);
+
     // === REGRAS DE NEGÓCIO ===
     void alterarDisponibilidade(Long id, boolean disponivel);
 

@@ -9,48 +9,63 @@ import java.util.Optional;
 
 public interface RestauranteService {
 
-    /**
-     * Cadastrar novo restaurante
-     */
-    Restaurante cadastrar(RestauranteRequest restauranteRequest);
+  /**
+   * Cadastrar novo restaurante
+   */
+  Restaurante cadastrar(RestauranteRequest restauranteRequest);
 
-    /**
-     * Buscar restaurante por ID
-     */
-    Optional<Restaurante> buscarPorId(Long id);
+  /**
+   * Buscar restaurante por ID
+   */
+  Optional<Restaurante> buscarPorId(Long id);
 
-    /**
-     * Listar todos os restaurantes
-     */
-    List<Restaurante> listarTodos();
+  /**
+   * Listar todos os restaurantes
+   */
+  List<Restaurante> listarTodos();
 
-    /**
-     * Listar apenas restaurantes ativos
-     */
-    List<Restaurante> listarAtivos();
+  /**
+   * Listar apenas restaurantes ativos
+   */
+  List<Restaurante> listarAtivos();
 
-    /**
-     * Buscar restaurantes por categoria
-     */
-    List<Restaurante> buscarPorCategoria(String categoria);
+  /**
+   * Buscar restaurantes por categoria
+   */
+  List<Restaurante> buscarPorCategoria(String categoria);
 
-    /**
-     * Buscar restaurantes por avaliação mínima
-     */
-    List<Restaurante> buscarPorAvaliacao(BigDecimal minAvaliacao);
+  /**
+   * Buscar restaurantes por avaliação mínima
+   */
+  List<Restaurante> buscarPorAvaliacao(BigDecimal minAvaliacao);
 
-    /**
-     * Buscar restaurantes por taxa de entrega máxima
-     */
-    List<Restaurante> buscarPorTaxaEntrega(BigDecimal maxTaxa);
+  /**
+   * Buscar restaurantes por taxa de entrega máxima
+   */
+  List<Restaurante> buscarPorTaxaEntrega(BigDecimal maxTaxa);
 
-    /**
-     * Atualizar dados do restaurante
-     */
-    Restaurante atualizar(Long id, RestauranteRequest restauranteRequest);
+  /**
+   * Atualizar dados do restaurante
+   */
+  Restaurante atualizar(Long id, RestauranteRequest restauranteRequest);
 
-    /**
-     * Inativar restaurante (soft delete)
-     */
-    void inativar(Long id);
+  /**
+   * Inativar restaurante (soft delete)
+   */
+  void inativar(Long id);
+
+  /**
+   * Calcular taxa de entrega baseada no restaurante e CEP
+   * 
+   * @param restauranteId ID do restaurante
+   * @param cep           CEP de destino
+   * @return valor da taxa de entrega
+   */
+  BigDecimal calcularTaxaEntrega(Long restauranteId, String cep);
+
+  Restaurante alterarStatus(Long id, Boolean ativo);
+
+  List<Restaurante> buscarProximos(String cep);
+
+  List<Restaurante> listarComFiltros(String categoria, Boolean ativo);
 }

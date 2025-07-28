@@ -3,7 +3,7 @@ package com.deliverytech.delivery.service;
 import com.deliverytech.delivery.dto.request.ClienteRequest;
 import com.deliverytech.delivery.model.Cliente;
 
-import jakarta.validation.Valid;
+// import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;

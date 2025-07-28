@@ -1,6 +1,7 @@
 package com.deliverytech.delivery.controller;
 
 import com.deliverytech.delivery.dto.request.PedidoRequest;
+import com.deliverytech.delivery.dto.request.StatusUpdateRequest;
 import com.deliverytech.delivery.dto.response.ItemPedidoResponse;
 import com.deliverytech.delivery.dto.response.PedidoResponse;
 import com.deliverytech.delivery.model.*;
@@ -10,11 +11,9 @@ import com.deliverytech.delivery.service.ProdutoService;
 import com.deliverytech.delivery.service.RestauranteService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-// import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
-
 import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;

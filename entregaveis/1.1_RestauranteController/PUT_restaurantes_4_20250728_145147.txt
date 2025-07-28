@@ -1,0 +1,28 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 14:51:47
+Método: PUT
+URL Completa: http://localhost:8080/api/restaurantes/4
+Status HTTP: 200
+Content-Type: application/json
+
+=== DADOS ENVIADOS ===
+{
+  "nome" : "Pizzaria Don Corleone",
+  "categoria" : "Italiana",
+  "telefone" : "11666666666",
+  "taxaEntrega" : 17.9,
+  "tempoEntregaMinutos" : 45,
+  "endereco" : "Estrada do Pau-Ferro, 171 - loja A",
+  "ativo" : true
+}
+
+=== RESPOSTA REAL ===
+{
+  "id" : 4,
+  "nome" : "Pizzaria Don Corleone",
+  "categoria" : "Italiana",
+  "telefone" : "11666666666",
+  "taxaEntrega" : 17.9,
+  "tempoEntregaMinutos" : 45,
+  "ativo" : true
+}

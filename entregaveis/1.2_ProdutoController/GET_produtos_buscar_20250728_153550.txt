@@ -1,0 +1,17 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 15:35:50
+Método: GET
+URL Completa: http://localhost:8080/api/produtos/buscar?nome=Sushi%20Salm%C3%A3o
+Status HTTP: 200
+Content-Type: application/json
+
+
+=== RESPOSTA REAL ===
+[ {
+  "id" : 5,
+  "nome" : "Sushi Salmão",
+  "categoria" : "Sushi",
+  "descricao" : "8 peças de sushi de salmão fresco",
+  "preco" : 32.0,
+  "disponivel" : true
+} ]

@@ -1,0 +1,26 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 15:58:05
+Método: GET
+URL Completa: http://localhost:8080/api/pedidos?status=CRIADO&dataPedido=2025-07-28
+Status HTTP: 200
+Content-Type: application/json
+
+
+=== RESPOSTA REAL ===
+[ {
+  "id" : 1,
+  "clienteId" : 5,
+  "restauranteId" : 1,
+  "enderecoEntrega" : {
+    "rua" : "Av Cipriano Rodrigues",
+    "numero" : "1784",
+    "bairro" : null,
+    "cidade" : "Rio de Janeiro",
+    "estado" : "RJ",
+    "cep" : "22790-671"
+  },
+  "valorTotal" : 0.0,
+  "status" : "CRIADO",
+  "dataPedido" : "2025-07-28T15:50:25.37163",
+  "itens" : [ ]
+} ]

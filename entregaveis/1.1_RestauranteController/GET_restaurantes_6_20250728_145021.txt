@@ -1,0 +1,18 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 14:50:21
+Método: GET
+URL Completa: http://localhost:8080/api/restaurantes/6
+Status HTTP: 200
+Content-Type: application/json
+
+
+=== RESPOSTA REAL ===
+{
+  "id" : 6,
+  "nome" : "Pizzaria Don Corleone",
+  "categoria" : "Italiana",
+  "telefone" : "11666666666",
+  "taxaEntrega" : 8.9,
+  "tempoEntregaMinutos" : 30,
+  "ativo" : true
+}

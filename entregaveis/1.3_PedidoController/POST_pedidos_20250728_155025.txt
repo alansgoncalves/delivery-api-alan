@@ -1,0 +1,45 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 15:50:25
+Método: POST
+URL Completa: http://localhost:8080/api/pedidos
+Status HTTP: 201
+Content-Type: application/json
+
+=== DADOS ENVIADOS ===
+{
+  "clienteId" : 5,
+  "restauranteId" : 1,
+  "enderecoEntrega" : {
+    "rua" : "Av Cipriano Rodrigues",
+    "numero" : "1784",
+    "cidade" : "Rio de Janeiro",
+    "estado" : "RJ",
+    "cep" : "22790-671"
+  },
+  "itens" : [ {
+    "produtoId" : 1,
+    "quantidade" : 2
+  }, {
+    "produtoId" : 2,
+    "quantidade" : 1
+  } ]
+}
+
+=== RESPOSTA REAL ===
+{
+  "id" : 1,
+  "clienteId" : 5,
+  "restauranteId" : 1,
+  "enderecoEntrega" : {
+    "rua" : "Av Cipriano Rodrigues",
+    "numero" : "1784",
+    "bairro" : null,
+    "cidade" : "Rio de Janeiro",
+    "estado" : "RJ",
+    "cep" : "22790-671"
+  },
+  "valorTotal" : 0,
+  "status" : "CRIADO",
+  "dataPedido" : "2025-07-28T15:50:25.3716297",
+  "itens" : [ ]
+}

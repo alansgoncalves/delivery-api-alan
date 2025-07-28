@@ -1,0 +1,36 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 17:22:46
+Método: POST
+URL Completa: http://localhost:8080/api/pedidos/calcular
+Status HTTP: 200
+Content-Type: application/json
+
+=== DADOS ENVIADOS ===
+{
+  "restauranteId" : 1,
+  "clienteId" : 5,
+  "enderecoEntrega" : {
+    "rua" : "Av Cipriano Rodrigues",
+    "numero" : "1784",
+    "cidade" : "Rio de Janeiro",
+    "bairro" : "Jacarepaguá",
+    "estado" : "RJ",
+    "cep" : "22790-671"
+  },
+  "itens" : [ {
+    "produtoId" : 1,
+    "quantidade" : 2
+  }, {
+    "produtoId" : 2,
+    "quantidade" : 1
+  } ]
+}
+
+=== RESPOSTA REAL ===
+{
+  "valorTotal" : 85.2,
+  "restaurante" : "Pizza Express",
+  "subtotal" : 81.7,
+  "moeda" : "BRL",
+  "taxaEntrega" : 3.5
+}

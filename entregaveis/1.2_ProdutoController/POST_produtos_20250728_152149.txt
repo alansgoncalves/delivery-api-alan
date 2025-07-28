@@ -1,0 +1,25 @@
+=== ENTREGA - TESTE DE ENDPOINT ===
+Data/Hora: 28/07/2025 15:21:49
+Método: POST
+URL Completa: http://localhost:8080/api/produtos
+Status HTTP: 201
+Content-Type: application/json
+
+=== DADOS ENVIADOS ===
+{
+  "nome" : "Muqueca de Camarão",
+  "preco" : 69.9,
+  "descricao" : "Camarão, tomate, farinha e vinho",
+  "categoria" : "Frutos do Mar",
+  "restauranteId" : 5
+}
+
+=== RESPOSTA REAL ===
+{
+  "id" : 11,
+  "nome" : "Muqueca de Camarão",
+  "categoria" : "Frutos do Mar",
+  "descricao" : "Camarão, tomate, farinha e vinho",
+  "preco" : 69.9,
+  "disponivel" : true
+}

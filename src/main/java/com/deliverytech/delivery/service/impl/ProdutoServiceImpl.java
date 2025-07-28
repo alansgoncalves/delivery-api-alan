@@ -134,4 +134,12 @@ public class ProdutoServiceImpl implements ProdutoService {
       throw new IllegalArgumentException("Preço não pode ser superior a R$ 99.999,99");
     }
   }
+
+  @Override
+  public List<Produto> buscarPorNome(String nome) {
+    if (nome == null || nome.trim().isEmpty()) {
+      return List.of(); // Retorna lista vazia se nome for nulo ou vazio
+    }
+    return produtoRepository.findByNomeContainingIgnoreCase(nome.trim());
+  }
 }

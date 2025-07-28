@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,12 +104,21 @@ public class PedidoServiceImpl implements PedidoService {
   }
 
   @Override
+  @Transactional
   public Pedido atualizarStatus(Long pedidoId, StatusPedido novoStatus) {
+    log.info("Atualizando status do pedido {} para: {}", pedidoId, novoStatus);
+
     Pedido pedido = pedidoRepository.findById(pedidoId)
         .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 
+    log.info("Status atual do pedido {}: {}", pedidoId, pedido.getStatus());
+
     pedido.setStatus(novoStatus);
-    return pedidoRepository.save(pedido);
+
+    Pedido salvo = pedidoRepository.save(pedido);
+    log.info("Status do pedido {} atualizado com sucesso para: {}", pedidoId, novoStatus);
+
+    return salvo;
   }
 
   // ✅ IMPLEMENTAR método calcularTotal
@@ -175,6 +185,7 @@ public class PedidoServiceImpl implements PedidoService {
    * Calcular total do pedido baseado nos itens (sem salvar)
    * Para cotações e pré-cálculos - método requerido pela atividade
    */
+  @Override
   @Transactional(readOnly = true)
   public BigDecimal calcularTotalPedido(List<ItemPedidoRequest> itens) {
     log.info("Calculando total do pedido com {} itens", itens.size());
@@ -209,5 +220,55 @@ public class PedidoServiceImpl implements PedidoService {
 
     log.info("Total calculado: R$ {}", total);
     return total;
+  }
+
+  @Override
+  @Transactional
+  public void deletar(Long id) {
+    Pedido pedido = pedidoRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+    pedidoRepository.delete(pedido);
+    log.info("Pedido deletado - ID: {}", id);
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<Pedido> listarComFiltros(StatusPedido status, LocalDate dataInicio, LocalDate dataFim) {
+    log.info("Listando pedidos com filtros - Status: {}, Data início: {}, Data fim: {}", status, dataInicio, dataFim);
+
+    // Se nenhum filtro foi fornecido, retorna todos
+    if (status == null && dataInicio == null && dataFim == null) {
+      return pedidoRepository.findAll();
+    }
+
+    // Converter LocalDate para LocalDateTime para comparação
+    LocalDateTime inicioDateTime = dataInicio != null ? dataInicio.atStartOfDay() : null;
+    LocalDateTime fimDateTime = dataFim != null ? dataFim.atTime(23, 59, 59) : null;
+
+    // Se apenas status foi fornecido
+    if (status != null && inicioDateTime == null && fimDateTime == null) {
+      return pedidoRepository.findByStatus(status);
+    }
+
+    // Se apenas período foi fornecido
+    if (status == null && inicioDateTime != null && fimDateTime != null) {
+      return pedidoRepository.findByDataPedidoBetween(inicioDateTime, fimDateTime);
+    }
+
+    // Se status e período foram fornecidos
+    if (status != null && inicioDateTime != null && fimDateTime != null) {
+      return pedidoRepository.findByStatusAndDataPedidoBetween(status, inicioDateTime, fimDateTime);
+    }
+
+    // Casos parciais (apenas dataInicio ou apenas dataFim)
+    if (inicioDateTime != null && fimDateTime == null) {
+      return pedidoRepository.findByDataPedidoGreaterThanEqual(inicioDateTime);
+    }
+
+    if (inicioDateTime == null && fimDateTime != null) {
+      return pedidoRepository.findByDataPedidoLessThanEqual(fimDateTime);
+    }
+
+    return pedidoRepository.findAll();
   }
 }

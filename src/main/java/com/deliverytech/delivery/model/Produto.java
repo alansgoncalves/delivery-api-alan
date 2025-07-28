@@ -18,6 +18,7 @@ public class Produto {
   private String categoria;
   private String descricao;
   private BigDecimal preco;
+  @Builder.Default
   private Boolean disponivel = true;
 
   @ManyToOne
@@ -25,6 +26,10 @@ public class Produto {
   private Restaurante restaurante;
 
   public boolean getAtivo() {
-    throw new UnsupportedOperationException("Unimplemented method 'getAtivo'");
+    return this.disponivel != null ? this.disponivel : false;
+  }
+
+  public void setAtivo(boolean ativo) {
+    this.disponivel = ativo;
   }
 }

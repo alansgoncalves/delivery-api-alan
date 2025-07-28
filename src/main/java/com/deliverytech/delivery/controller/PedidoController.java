@@ -14,12 +14,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
+
 import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-// import java.util.Arrays;
+import java.util.Arrays;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
@@ -180,32 +181,6 @@ public class PedidoController {
         pedidoConfirmado.getValorTotal(),
         pedidoConfirmado.getStatus(),
         pedidoConfirmado.getDataPedido(),
-        itensResp));
-  }
-
-  // 6. ATUALIZAR STATUS DO PEDIDO (IMPLEMENTAR)
-  @Transactional
-  @PutMapping("/{id}/status")
-  public ResponseEntity<PedidoResponse> atualizarStatus(@PathVariable Long id,
-      @RequestParam StatusPedido status) {
-    Pedido pedido = pedidoService.buscarPorId(id)
-        .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
-
-    Pedido pedidoAtualizado = pedidoService.atualizarStatus(id, status);
-
-    List<ItemPedidoResponse> itensResp = pedidoAtualizado.getItens() != null ? pedidoAtualizado.getItens().stream()
-        .map(i -> new ItemPedidoResponse(i.getProduto().getId(), i.getProduto().getNome(), i.getQuantidade(),
-            i.getPrecoUnitario()))
-        .collect(Collectors.toList()) : List.of();
-
-    return ResponseEntity.ok(new PedidoResponse(
-        pedidoAtualizado.getId(),
-        pedidoAtualizado.getCliente().getId(),
-        pedidoAtualizado.getRestaurante().getId(),
-        pedidoAtualizado.getEnderecoEntrega(),
-        pedidoAtualizado.getValorTotal(),
-        pedidoAtualizado.getStatus(),
-        pedidoAtualizado.getDataPedido(),
         itensResp));
   }
 
